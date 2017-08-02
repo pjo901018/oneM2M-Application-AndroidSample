@@ -14,6 +14,7 @@ public interface Config {
     }
 
     interface MQTT {
+        String HOST = "13.124.172.12";
         String PORT = "1883";
     }
 

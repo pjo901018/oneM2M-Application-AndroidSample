@@ -24,9 +24,6 @@ import keti.com.mobiusytsampleapp.R;
 public class MqttActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private static final String TAG = "MqttActivity";
 
-    private static final String MQTT_HOST = "13.124.172.12";
-    private static final String MQTT_PORT = "1883";
-
     private MqttAndroidClient mqttClient = null;
     private MqttCallback mainMqttCallback = new MyMqttCallback();
     private IMqttActionListener mainIMqttActionListener = new MyIMqttActionListener();
@@ -69,7 +66,7 @@ public class MqttActivity extends AppCompatActivity implements CompoundButton.On
             subcribeResource.start();
 
             /* MQTT Subscribe */
-            mqttClient = new MqttAndroidClient(this.getApplicationContext(), "tcp://" + MQTT_HOST + ":" + MQTT_PORT, MqttClient.generateClientId());
+            mqttClient = new MqttAndroidClient(this.getApplicationContext(), "tcp://" + Config.MQTT.HOST + ":" + Config.MQTT.PORT, MqttClient.generateClientId());
             mqttClient.setCallback(mainMqttCallback);
             try {
                 IMqttToken token = mqttClient.connect();
