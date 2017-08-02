@@ -22,6 +22,8 @@ class SubscribeResource extends Thread {
         subscribeInstance.setUrl(Config.CSE.HOST);
         subscribeInstance.setResourceName(Config.AndroidClient.AE.AEID+"_rn");
         subscribeInstance.setPath(Config.AndroidClient.AE.AEID+"_sub");
+        //subscribeInstance.setPath(Config.AndroidClient.AE.AEID+"_sub");
+        ///oneM2M/req/Mobius/ae-jibcon_sub/#
 //            subscribeInstance.setPath("ae-jibcon");
         subscribeInstance.setOrigin_id(Config.AndroidClient.AE.AEID);
     }

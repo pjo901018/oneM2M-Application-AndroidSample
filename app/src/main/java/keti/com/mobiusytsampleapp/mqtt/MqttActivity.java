@@ -11,10 +11,11 @@ import android.widget.TextView;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import keti.com.mobiusytsampleapp.R;
 
 /**
@@ -25,8 +26,8 @@ public class MqttActivity extends AppCompatActivity implements CompoundButton.On
     private static final String TAG = "MqttActivity";
 
     private MqttAndroidClient mqttClient = null;
-    private MqttCallback mainMqttCallback = new MyMqttCallback();
-    private IMqttActionListener mainIMqttActionListener = new MyIMqttActionListener();
+    private MyMqttCallback mainMqttCallback = new MyMqttCallback();
+    private IMqttActionListener mainIMqttActionListener;
     private TextView textViewData;
     private Handler handler = new Handler();
 
@@ -67,6 +68,17 @@ public class MqttActivity extends AppCompatActivity implements CompoundButton.On
 
             /* MQTT Subscribe */
             mqttClient = new MqttAndroidClient(this.getApplicationContext(), "tcp://" + Config.MQTT.HOST + ":" + Config.MQTT.PORT, MqttClient.generateClientId());
+            mainIMqttActionListener = new MyIMqttActionListener(mqttClient);
+
+
+            mainMqttCallback.setListener(
+                    new Consumer<String>() {
+                        @Override
+                        public void accept(@NonNull String s) throws Exception {
+                            textViewData.setText(s);
+                        }
+                    }
+            );
             mqttClient.setCallback(mainMqttCallback);
             try {
                 IMqttToken token = mqttClient.connect();

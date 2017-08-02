@@ -6,8 +6,8 @@ package keti.com.mobiusytsampleapp.mqtt;
 
 public interface Config {
     interface CSE {
-//        String HOST = "13.124.172.12";
-        String HOST = "52.78.111.146";
+        String HOST = "13.124.172.12";
+//        String HOST = "52.78.111.146";
         String PORT = "7579";
         String NAME = "Mobius";
         String SERVICE_URL = "http://"+ HOST +":"+PORT+"/"+NAME;
@@ -16,6 +16,7 @@ public interface Config {
     interface MQTT {
         String HOST = "13.124.172.12";
         String PORT = "1883";
+        String REQ_TOPIC = "/oneM2M/req/Mobius/ae-jibcon_sub/#";
     }
 
     interface AndroidClient {
@@ -27,13 +28,17 @@ public interface Config {
 
     interface Sensor {
         interface AE {
-            String AEID = "ae-jyp";
-            String NAME = "ae-jyp";
+            //String AEID = "ae-firstled";
+            String AEID ="ledled";
+            String NAME = "ae-firstled";
         }
 
         interface CNT {
-            String NAME = "cnt-ultrasonic";
+            //String NAME = "cnt-ultrasonic";
+            String NAME = "cnt-led";
 //            String NAME = "cnt-led";
         }
     }
+
+
 }
