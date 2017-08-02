@@ -1,4 +1,4 @@
-package keti.com.mobiusytsampleapp;
+package keti.com.mobiusytsampleapp.mqtt;
 
 /**
  * Created by araha on 2016-09-20.
